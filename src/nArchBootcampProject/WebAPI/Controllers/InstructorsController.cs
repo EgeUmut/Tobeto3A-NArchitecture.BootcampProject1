@@ -51,4 +51,15 @@ public class InstructorsController : BaseController
         GetListResponse<GetListInstructorListItemDto> response = await Mediator.Send(getListInstructorQuery);
         return Ok(response);
     }
+
+    [HttpGet("GetListAll")]
+    public async Task<IActionResult> GetListAll()
+    {
+        PageRequest pageRequest = new();
+        pageRequest.PageSize = 10;
+        pageRequest.PageIndex = 0;
+        GetListInstructorQuery getListInstructorQuery = new() { PageRequest = pageRequest };
+        GetListResponse<GetListInstructorListItemDto> response = await Mediator.Send(getListInstructorQuery);
+        return Ok(response);
+    }
 }

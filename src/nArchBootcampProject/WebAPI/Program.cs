@@ -14,6 +14,7 @@ using NArchitecture.Core.Security.JWT;
 using NArchitecture.Core.Security.WebApi.Swagger.Extensions;
 using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using System.Reflection;
 using WebAPI;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

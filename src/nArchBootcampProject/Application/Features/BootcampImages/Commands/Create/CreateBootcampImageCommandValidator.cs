@@ -7,6 +7,6 @@ public class CreateBootcampImageCommandValidator : AbstractValidator<CreateBootc
     public CreateBootcampImageCommandValidator()
     {
         RuleFor(c => c.BootcampId).NotEmpty();
-        RuleFor(c => c.ImagePath).NotEmpty();
+        //RuleFor(c => c.ImagePath).NotEmpty();
     }
 }

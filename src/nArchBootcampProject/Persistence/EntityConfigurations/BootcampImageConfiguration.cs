@@ -11,7 +11,7 @@ public class BootcampImageConfiguration : IEntityTypeConfiguration<BootcampImage
         builder.ToTable("BootcampImages");
 
         builder.Property(bi => bi.Id).HasColumnName("Id").IsRequired();
-        //builder.Property(bi => bi.BootcampId).HasColumnName("BootcampId");
+        builder.Property(bi => bi.BootcampId).HasColumnName("BootcampId");
         builder.Property(bi => bi.ImagePath).HasColumnName("ImagePath");
         builder.Property(bi => bi.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(bi => bi.UpdatedDate).HasColumnName("UpdatedDate");
@@ -19,6 +19,6 @@ public class BootcampImageConfiguration : IEntityTypeConfiguration<BootcampImage
 
         builder.HasQueryFilter(bi => !bi.DeletedDate.HasValue);
 
-        //builder.HasOne(bi => bi.Bootcamp);
+        builder.HasOne(bi => bi.Bootcamp);
     }
 }

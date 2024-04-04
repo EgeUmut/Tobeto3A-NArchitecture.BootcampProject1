@@ -21,7 +21,7 @@ public class CreateBlackListCommand
 {
     public string Reason { get; set; }
     public DateTime Date { get; set; }
-    public int ApplicantId { get; set; }
+    public Guid ApplicantId { get; set; }
 
     public string[] Roles => [Admin, Write, BlackListsOperationClaims.Create];
 

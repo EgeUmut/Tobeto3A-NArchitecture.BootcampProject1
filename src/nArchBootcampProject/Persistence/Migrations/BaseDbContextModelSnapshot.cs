@@ -189,8 +189,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BootcampImageId");
-
                     b.HasIndex("BootcampStateId");
 
                     b.HasIndex("InstructorId");
@@ -206,6 +204,10 @@ namespace Persistence.Migrations
                         .HasColumnName("Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BootcampId")
+                        .HasColumnType("int")
+                        .HasColumnName("BootcampId");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")
@@ -225,6 +227,9 @@ namespace Persistence.Migrations
                         .HasColumnName("UpdatedDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BootcampId")
+                        .IsUnique();
 
                     b.ToTable("BootcampImages", (string)null);
                 });
@@ -963,16 +968,16 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("076ddf4a-50e1-422b-a4ae-3be4b6efc448"),
+                            Id = new Guid("5ece992a-1c2d-4687-8d2d-c4a5deb15189"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2024, 3, 25, 3, 31, 16, 990, DateTimeKind.Local).AddTicks(8536),
-                            Email = "narch@kodlama.io",
+                            DateOfBirth = new DateTime(2024, 4, 4, 22, 42, 35, 908, DateTimeKind.Local).AddTicks(7801),
+                            Email = "ege@ege.com",
                             FirstName = "Ege umut",
                             LastName = "Tali",
                             NationalIdentity = "TC12312",
-                            PasswordHash = new byte[] { 232, 7, 52, 189, 177, 163, 64, 24, 36, 159, 95, 137, 122, 224, 188, 218, 137, 46, 209, 26, 167, 148, 203, 248, 200, 187, 226, 211, 93, 160, 251, 96, 4, 126, 188, 43, 194, 129, 105, 226, 18, 234, 135, 157, 48, 201, 253, 63, 20, 113, 60, 226, 235, 192, 228, 239, 217, 166, 121, 14, 164, 45, 180, 165 },
-                            PasswordSalt = new byte[] { 22, 42, 77, 238, 57, 37, 126, 129, 169, 140, 180, 20, 95, 202, 86, 28, 111, 170, 222, 213, 139, 31, 154, 44, 50, 58, 58, 150, 204, 174, 60, 209, 83, 155, 84, 104, 96, 24, 210, 70, 185, 31, 141, 81, 85, 109, 130, 210, 226, 113, 147, 40, 89, 71, 29, 89, 148, 136, 123, 36, 238, 27, 231, 233, 95, 130, 207, 2, 40, 154, 13, 67, 127, 99, 191, 18, 124, 99, 208, 139, 112, 68, 128, 150, 225, 126, 234, 39, 94, 86, 205, 30, 70, 209, 71, 53, 208, 81, 25, 216, 192, 30, 152, 88, 175, 21, 243, 115, 168, 181, 154, 230, 202, 226, 229, 121, 94, 224, 199, 97, 111, 18, 10, 125, 226, 160, 23, 28 },
+                            PasswordHash = new byte[] { 83, 33, 24, 157, 190, 102, 53, 209, 33, 64, 160, 9, 141, 73, 178, 137, 162, 236, 145, 206, 90, 248, 251, 203, 148, 243, 234, 216, 132, 221, 84, 119, 7, 246, 243, 89, 212, 17, 3, 12, 153, 138, 53, 71, 187, 200, 210, 53, 117, 109, 126, 118, 220, 116, 114, 253, 12, 102, 122, 26, 248, 72, 116, 57 },
+                            PasswordSalt = new byte[] { 92, 211, 48, 224, 153, 142, 250, 222, 208, 70, 235, 179, 236, 82, 54, 242, 31, 185, 45, 106, 249, 59, 207, 175, 7, 153, 152, 155, 232, 221, 120, 91, 176, 37, 199, 82, 249, 161, 77, 155, 198, 149, 194, 35, 165, 179, 85, 253, 53, 46, 143, 123, 164, 144, 73, 109, 251, 72, 153, 189, 42, 139, 155, 108, 200, 255, 90, 214, 204, 237, 112, 179, 248, 102, 161, 16, 41, 240, 19, 64, 143, 0, 128, 160, 230, 140, 178, 162, 101, 196, 135, 57, 142, 190, 9, 244, 175, 34, 20, 1, 21, 96, 130, 89, 231, 7, 151, 109, 216, 13, 6, 120, 244, 78, 149, 129, 220, 186, 171, 74, 66, 194, 51, 128, 127, 133, 106, 11 },
                             UserName = "EgeUmut"
                         });
                 });
@@ -1015,10 +1020,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("739b89dd-bf7a-48ba-83a8-f9e12b29cd0c"),
+                            Id = new Guid("9db942ef-bf60-4bf3-b762-4b10db236787"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("076ddf4a-50e1-422b-a4ae-3be4b6efc448")
+                            UserId = new Guid("5ece992a-1c2d-4687-8d2d-c4a5deb15189")
                         });
                 });
 
@@ -1097,13 +1102,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Bootcamp", b =>
                 {
-                    b.HasOne("Domain.Entities.BootcampImage", "BootcampImage")
-                        .WithMany()
-                        .HasForeignKey("BootcampImageId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.BootcampState", "BootcampStates")
+                    b.HasOne("Domain.Entities.BootcampState", "BootcampState")
                         .WithMany()
                         .HasForeignKey("BootcampStateId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1115,11 +1114,20 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("BootcampImage");
-
-                    b.Navigation("BootcampStates");
+                    b.Navigation("BootcampState");
 
                     b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BootcampImage", b =>
+                {
+                    b.HasOne("Domain.Entities.Bootcamp", "Bootcamp")
+                        .WithOne("BootcampImage")
+                        .HasForeignKey("Domain.Entities.BootcampImage", "BootcampId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Bootcamp");
                 });
 
             modelBuilder.Entity("Domain.Entities.EmailAuthenticator", b =>
@@ -1204,6 +1212,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Bootcamp", b =>
                 {
                     b.Navigation("ApplicationInformations");
+
+                    b.Navigation("BootcampImage");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

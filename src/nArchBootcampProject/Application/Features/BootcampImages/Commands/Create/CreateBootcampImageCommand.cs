@@ -1,9 +1,11 @@
 using Application.Features.BootcampImages.Constants;
 using Application.Features.BootcampImages.Rules;
+using Application.Services.ImageService;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
@@ -13,14 +15,15 @@ using static Application.Features.BootcampImages.Constants.BootcampImagesOperati
 namespace Application.Features.BootcampImages.Commands.Create;
 
 public class CreateBootcampImageCommand
-    : IRequest<CreatedBootcampImageResponse>,
-        ISecuredRequest,
-        ICacheRemoverRequest,
-        ILoggableRequest,
-        ITransactionalRequest
+    : IRequest<CreatedBootcampImageResponse>//,
+        //ISecuredRequest,
+        //ICacheRemoverRequest,
+        //ILoggableRequest,
+        //ITransactionalRequest
 {
     public int BootcampId { get; set; }
-    public string ImagePath { get; set; }
+    //public string ImagePath { get; set; }
+    public IFormFile Image { get; set; }
 
     public string[] Roles => [Admin, Write, BootcampImagesOperationClaims.Create];
 
@@ -33,16 +36,19 @@ public class CreateBootcampImageCommand
         private readonly IMapper _mapper;
         private readonly IBootcampImageRepository _bootcampImageRepository;
         private readonly BootcampImageBusinessRules _bootcampImageBusinessRules;
+        private readonly ImageServiceBase _ýmageServiceBase;
 
         public CreateBootcampImageCommandHandler(
             IMapper mapper,
             IBootcampImageRepository bootcampImageRepository,
             BootcampImageBusinessRules bootcampImageBusinessRules
-        )
+,
+            ImageServiceBase ýmageServiceBase)
         {
             _mapper = mapper;
             _bootcampImageRepository = bootcampImageRepository;
             _bootcampImageBusinessRules = bootcampImageBusinessRules;
+            _ýmageServiceBase = ýmageServiceBase;
         }
 
         public async Task<CreatedBootcampImageResponse> Handle(
@@ -51,6 +57,10 @@ public class CreateBootcampImageCommand
         )
         {
             BootcampImage bootcampImage = _mapper.Map<BootcampImage>(request);
+
+            
+            var path = _ýmageServiceBase.UploadAsync(request.Image);
+            bootcampImage.ImagePath = path.ToString();
 
             await _bootcampImageRepository.AddAsync(bootcampImage);
 

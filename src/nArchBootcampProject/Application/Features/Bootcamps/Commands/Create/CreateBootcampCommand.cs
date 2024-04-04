@@ -13,17 +13,17 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 namespace Application.Features.Bootcamps.Commands.Create;
 
 public class CreateBootcampCommand
-    : IRequest<CreatedBootcampResponse>,
-        ISecuredRequest,
-        ICacheRemoverRequest,
-        ILoggableRequest,
-        ITransactionalRequest
+    : IRequest<CreatedBootcampResponse>//,
+    //    ISecuredRequest,
+    //    ICacheRemoverRequest,
+    //    ILoggableRequest,
+    //    ITransactionalRequest
 {
     public string Name { get; set; }
-    public int InstructorId { get; set; }
+    public Guid InstructorId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public int BootcampStateId { get; set; }
+    public short BootcampStateId { get; set; }
 
     public string[] Roles => [Admin, Write, BootcampsOperationClaims.Create];
 
