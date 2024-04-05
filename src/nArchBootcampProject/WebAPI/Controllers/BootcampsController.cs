@@ -51,4 +51,12 @@ public class BootcampsController : BaseController
         GetListResponse<GetListBootcampListItemDto> response = await Mediator.Send(getListBootcampQuery);
         return Ok(response);
     }
+
+    [HttpGet("getbootcampbyinstructorid")]
+    public async Task<IActionResult> GetListBootcampByInstructorId([FromQuery] PageRequest pageRequest, Guid instructorId)
+    {
+        GetListBootcampByInstructorIdQuery query = new() { PageRequest = pageRequest, InstructorId = instructorId };
+        var result = await Mediator.Send(query);
+        return Ok(result);
+    }
 }

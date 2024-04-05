@@ -13,10 +13,10 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Queries.GetList;
 
-public class GetListBootcampQuery : IRequest<GetListResponse<GetListBootcampListItemDto>>//, ISecuredRequest, ICachableRequest
+public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetListBootcampListItemDto>>//, ISecuredRequest, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
-
+    public Guid InstructorId { get; set; }
     public string[] Roles => [Admin, Read];
 
     public bool BypassCache { get; }
@@ -24,27 +24,28 @@ public class GetListBootcampQuery : IRequest<GetListResponse<GetListBootcampList
     public string? CacheGroupKey => "GetBootcamps";
     public TimeSpan? SlidingExpiration { get; }
 
-    public class GetListBootcampQueryHandler : IRequestHandler<GetListBootcampQuery, GetListResponse<GetListBootcampListItemDto>>
+    public class GetListBootcampByInstructorIdQueryHandler : IRequestHandler<GetListBootcampByInstructorIdQuery, GetListResponse<GetListBootcampListItemDto>>
     {
         private readonly IBootcampRepository _bootcampRepository;
         private readonly IMapper _mapper;
 
-        public GetListBootcampQueryHandler(IBootcampRepository bootcampRepository, IMapper mapper)
+        public GetListBootcampByInstructorIdQueryHandler(IBootcampRepository bootcampRepository, IMapper mapper)
         {
             _bootcampRepository = bootcampRepository;
             _mapper = mapper;
         }
 
         public async Task<GetListResponse<GetListBootcampListItemDto>> Handle(
-            GetListBootcampQuery request,
+            GetListBootcampByInstructorIdQuery request,
             CancellationToken cancellationToken
         )
         {
             IPaginate<Bootcamp> bootcamps = await _bootcampRepository.GetListAsync(
+                predicate:x=>x.InstructorId == request.InstructorId,
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken,
-                include:p=>p.Include(x=>x.Instructor).Include(p=>p.BootcampState)
+                include:p=>p.Include(x=>x.Instructor).Include(p => p.BootcampState)
             );
 
             GetListResponse<GetListBootcampListItemDto> response = _mapper.Map<GetListResponse<GetListBootcampListItemDto>>(
