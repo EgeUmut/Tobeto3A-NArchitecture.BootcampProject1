@@ -32,7 +32,7 @@ using NArchitecture.Core.Security.DependencyInjection;
 namespace Application;
 
 public static class ApplicationServiceRegistration
-{
+{//test
     public static IServiceCollection AddApplicationServices(
         this IServiceCollection services,
         MailSettings mailSettings,
