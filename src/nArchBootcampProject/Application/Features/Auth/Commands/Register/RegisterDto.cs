@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Features.Auth.Commands.Register;
+
 public class RegisterDto
 {
     public string FirstName { get; set; }
@@ -14,5 +15,4 @@ public class RegisterDto
     public string Password { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string NationalIdentity { get; set; }
-
 }

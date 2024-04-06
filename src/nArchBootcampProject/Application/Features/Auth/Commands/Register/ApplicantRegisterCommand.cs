@@ -1,4 +1,5 @@
-﻿using Application.Features.Auth.Rules;
+﻿using Application.Features.ApplicationInformations.Constants;
+using Application.Features.Auth.Rules;
 using Application.Services.AuthService;
 using Application.Services.Repositories;
 using Domain.Entities;
@@ -28,21 +29,22 @@ public class ApplicantRegisterCommand : IRequest<RegisteredResponse>
 
     public class RegisterCommandHandler : IRequestHandler<ApplicantRegisterCommand, RegisteredResponse>
     {
-        private readonly IUserRepository _userRepository;
         private readonly IAuthService _authService;
         private readonly AuthBusinessRules _authBusinessRules;
         private readonly IApplicantRepository _applicantRepository;
+        private readonly IUserOperationClaimRepository _userOperationClaimRepository;
 
         public RegisterCommandHandler(
-            IUserRepository userRepository,
             IAuthService authService,
             AuthBusinessRules authBusinessRules,
-            IApplicantRepository applicantRepository)
+            IApplicantRepository applicantRepository,
+            IUserOperationClaimRepository userOperationClaimRepository
+        )
         {
-            _userRepository = userRepository;
             _authService = authService;
             _authBusinessRules = authBusinessRules;
             _applicantRepository = applicantRepository;
+            _userOperationClaimRepository = userOperationClaimRepository;
         }
 
         public async Task<RegisteredResponse> Handle(ApplicantRegisterCommand request, CancellationToken cancellationToken)
@@ -68,6 +70,14 @@ public class ApplicantRegisterCommand : IRequest<RegisteredResponse>
                     PasswordSalt = passwordSalt,
                 };
             Applicant createdUser = await _applicantRepository.AddAsync(newUser);
+
+            UserOperationClaim userOperationClaim1 = new() { UserId = createdUser.Id, OperationClaimId = 31 };
+            UserOperationClaim userOperationClaim2 = new() { UserId = createdUser.Id, OperationClaimId = 33 };
+            UserOperationClaim userOperationClaim3 = new() { UserId = createdUser.Id, OperationClaimId = 35 };
+
+            await _userOperationClaimRepository.AddAsync(userOperationClaim1);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim2);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim3);
 
             AccessToken createdAccessToken = await _authService.CreateAccessToken(createdUser);
 

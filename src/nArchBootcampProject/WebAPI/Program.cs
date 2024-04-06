@@ -1,3 +1,4 @@
+using System.Reflection;
 using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,7 +15,6 @@ using NArchitecture.Core.Security.JWT;
 using NArchitecture.Core.Security.WebApi.Swagger.Extensions;
 using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System.Reflection;
 using WebAPI;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

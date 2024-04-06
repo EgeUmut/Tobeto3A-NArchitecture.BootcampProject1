@@ -23,17 +23,17 @@ public class Bootcamp : Entity<int>
     public virtual BootcampImage? BootcampImage { get; set; }
 
     public Bootcamp(
-    string name,
-    Guid instructorId,
-    DateTime startDate,
-    DateTime endDate,
-    short bootcampStateId,
-    Instructor? instructor,
-    ICollection<ApplicationInformation> applicationInformations,
-    BootcampState bootcampState,
-    BootcampImage bootcampImage,
-    int bootcampImageId
-)
+        string name,
+        Guid instructorId,
+        DateTime startDate,
+        DateTime endDate,
+        short bootcampStateId,
+        Instructor? instructor,
+        ICollection<ApplicationInformation> applicationInformations,
+        BootcampState bootcampState,
+        BootcampImage bootcampImage,
+        int bootcampImageId
+    )
     {
         Name = name;
         InstructorId = instructorId;

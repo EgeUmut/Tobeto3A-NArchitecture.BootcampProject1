@@ -36,7 +36,8 @@ public class EmployeeRegisterCommand : IRequest<RegisteredResponse>
             IUserRepository userRepository,
             IAuthService authService,
             AuthBusinessRules authBusinessRules,
-            IEmployeeRepository employeeRepository)
+            IEmployeeRepository employeeRepository
+        )
         {
             _userRepository = userRepository;
             _authService = authService;

@@ -40,7 +40,7 @@ public class AuthController : BaseController
     }
 
     [HttpPost("RegisterApplicant")]
-    public async Task<IActionResult> Register([FromBody] ApplicantRegisterDto userForRegisterDto )
+    public async Task<IActionResult> Register([FromBody] ApplicantRegisterDto userForRegisterDto)
     {
         ApplicantRegisterCommand registerCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = getIpAddress() };
         RegisteredResponse result = await Mediator.Send(registerCommand);

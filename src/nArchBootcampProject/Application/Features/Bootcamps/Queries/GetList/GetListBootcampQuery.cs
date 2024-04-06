@@ -13,7 +13,7 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Queries.GetList;
 
-public class GetListBootcampQuery : IRequest<GetListResponse<GetListBootcampListItemDto>>//, ISecuredRequest, ICachableRequest
+public class GetListBootcampQuery : IRequest<GetListResponse<GetListBootcampListItemDto>> //, ISecuredRequest, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
 
@@ -44,7 +44,7 @@ public class GetListBootcampQuery : IRequest<GetListResponse<GetListBootcampList
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken,
-                include:p=>p.Include(x=>x.Instructor).Include(p=>p.BootcampState)
+                include: p => p.Include(x => x.Instructor).Include(p => p.BootcampState)
             );
 
             GetListResponse<GetListBootcampListItemDto> response = _mapper.Map<GetListResponse<GetListBootcampListItemDto>>(

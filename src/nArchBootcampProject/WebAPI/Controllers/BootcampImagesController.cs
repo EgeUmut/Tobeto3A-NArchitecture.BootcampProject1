@@ -14,9 +14,8 @@ namespace WebAPI.Controllers;
 public class BootcampImagesController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateBootcampImageCommand createBootcampImageCommand,IFormFile image)
+    public async Task<IActionResult> Add([FromBody] CreateBootcampImageCommand createBootcampImageCommand, IFormFile image)
     {
-
         createBootcampImageCommand.Image = image;
         CreatedBootcampImageResponse response = await Mediator.Send(createBootcampImageCommand);
 

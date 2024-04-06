@@ -13,7 +13,7 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Queries.GetList;
 
-public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetListBootcampListItemDto>>//, ISecuredRequest, ICachableRequest
+public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetListBootcampListItemDto>> //, ISecuredRequest, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
     public Guid InstructorId { get; set; }
@@ -24,7 +24,8 @@ public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetLi
     public string? CacheGroupKey => "GetBootcamps";
     public TimeSpan? SlidingExpiration { get; }
 
-    public class GetListBootcampByInstructorIdQueryHandler : IRequestHandler<GetListBootcampByInstructorIdQuery, GetListResponse<GetListBootcampListItemDto>>
+    public class GetListBootcampByInstructorIdQueryHandler
+        : IRequestHandler<GetListBootcampByInstructorIdQuery, GetListResponse<GetListBootcampListItemDto>>
     {
         private readonly IBootcampRepository _bootcampRepository;
         private readonly IMapper _mapper;
@@ -41,11 +42,11 @@ public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetLi
         )
         {
             IPaginate<Bootcamp> bootcamps = await _bootcampRepository.GetListAsync(
-                predicate:x=>x.InstructorId == request.InstructorId,
+                predicate: x => x.InstructorId == request.InstructorId,
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken,
-                include:p=>p.Include(x=>x.Instructor).Include(p => p.BootcampState)
+                include: p => p.Include(x => x.Instructor).Include(p => p.BootcampState)
             );
 
             GetListResponse<GetListBootcampListItemDto> response = _mapper.Map<GetListResponse<GetListBootcampListItemDto>>(

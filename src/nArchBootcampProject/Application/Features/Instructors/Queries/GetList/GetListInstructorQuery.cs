@@ -12,7 +12,7 @@ using static Application.Features.Instructors.Constants.InstructorsOperationClai
 
 namespace Application.Features.Instructors.Queries.GetList;
 
-public class GetListInstructorQuery : IRequest<GetListResponse<GetListInstructorListItemDto>>//, ISecuredRequest, ICachableRequest
+public class GetListInstructorQuery : IRequest<GetListResponse<GetListInstructorListItemDto>> //, ISecuredRequest, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
 
@@ -40,7 +40,6 @@ public class GetListInstructorQuery : IRequest<GetListResponse<GetListInstructor
             CancellationToken cancellationToken
         )
         {
-
             IPaginate<Instructor> instructors = await _instructorRepository.GetListAsync(
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
