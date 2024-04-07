@@ -40,7 +40,7 @@ public class AuthController : BaseController
     }
 
     [HttpPost("RegisterApplicant")]
-    public async Task<IActionResult> Register([FromBody] ApplicantRegisterDto userForRegisterDto)
+    public async Task<IActionResult> RegisterApplicant([FromBody] ApplicantRegisterDto userForRegisterDto)
     {
         ApplicantRegisterCommand registerCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = getIpAddress() };
         RegisteredResponse result = await Mediator.Send(registerCommand);
@@ -49,7 +49,7 @@ public class AuthController : BaseController
     }
 
     [HttpPost("RegisterEmployee")]
-    public async Task<IActionResult> Register([FromBody] EmployeeRegisterDto userForRegisterDto)
+    public async Task<IActionResult> RegisterEmployee([FromBody] EmployeeRegisterDto userForRegisterDto)
     {
         EmployeeRegisterCommand registerCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = getIpAddress() };
         RegisteredResponse result = await Mediator.Send(registerCommand);
@@ -58,7 +58,7 @@ public class AuthController : BaseController
     }
 
     [HttpPost("RegisterInstructor")]
-    public async Task<IActionResult> Register([FromBody] InstructorRegisterDto userForRegisterDto)
+    public async Task<IActionResult> RegisterInstructor([FromBody] InstructorRegisterDto userForRegisterDto)
     {
         InstructorRegisterCommand registerCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = getIpAddress() };
         RegisteredResponse result = await Mediator.Send(registerCommand);
