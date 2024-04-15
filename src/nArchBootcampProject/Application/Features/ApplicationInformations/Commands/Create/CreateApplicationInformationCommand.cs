@@ -21,7 +21,7 @@ public class CreateApplicationInformationCommand
 {
     public Guid ApplicantId { get; set; }
     public int BootcampId { get; set; }
-    public short ApplicationStateId { get; set; }
+    public short ApplicationStateInformationId { get; set; }
 
     public string[] Roles => [Admin, Write, ApplicationInformationsOperationClaims.Create];
 
@@ -54,7 +54,11 @@ public class CreateApplicationInformationCommand
         {
             ApplicationInformation applicationInformation = _mapper.Map<ApplicationInformation>(request);
 
+            await _applicationInformationBusinessRules.CheckApplicationInformationDuplicate(applicationInformation.ApplicantId, applicationInformation.BootcampId);
+
             await _applicationInformationRepository.AddAsync(applicationInformation);
+
+            
 
             CreatedApplicationInformationResponse response = _mapper.Map<CreatedApplicationInformationResponse>(
                 applicationInformation

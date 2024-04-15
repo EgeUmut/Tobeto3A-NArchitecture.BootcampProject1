@@ -8,6 +8,6 @@ public class CreatedApplicationInformationResponse : IResponse
     public Guid ApplicantId { get; set; }
     public short BootcampId { get; set; }
     public string BootcampName { get; set; }
-    public short ApplicationStateId { get; set; }
-    public string ApplicationStateName { get; set; }
+    public short ApplicationStateInformationId { get; set; }
+    public string ApplicationStateInformationName { get; set; }
 }

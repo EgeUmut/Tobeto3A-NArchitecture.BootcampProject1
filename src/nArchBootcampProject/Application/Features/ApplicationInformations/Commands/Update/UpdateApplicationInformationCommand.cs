@@ -22,7 +22,7 @@ public class UpdateApplicationInformationCommand
     public int Id { get; set; }
     public Guid ApplicantId { get; set; }
     public int BootcampId { get; set; }
-    public short ApplicationStateId { get; set; }
+    public short ApplicationStateInformationId { get; set; }
 
     public string[] Roles => [Admin, Write, ApplicationInformationsOperationClaims.Update];
 

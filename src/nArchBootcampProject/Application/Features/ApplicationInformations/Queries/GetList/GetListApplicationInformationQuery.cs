@@ -3,6 +3,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Requests;
@@ -49,7 +50,8 @@ public class GetListApplicationInformationQuery
             IPaginate<ApplicationInformation> applicationInformations = await _applicationInformationRepository.GetListAsync(
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
-                cancellationToken: cancellationToken
+                cancellationToken: cancellationToken,
+                include: p => p.Include(x => x.ApplicationStateInformation)
             );
 
             GetListResponse<GetListApplicationInformationListItemDto> response = _mapper.Map<

@@ -35,12 +35,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ApplicantId");
 
-                    b.Property<short>("ApplicationStateId")
+                    b.Property<short>("ApplicationStateInformationId")
                         .HasColumnType("smallint")
-                        .HasColumnName("ApplicationStateId");
-
-                    b.Property<short?>("ApplicationStateInformationsId")
-                        .HasColumnType("smallint");
+                        .HasColumnName("ApplicationStateInformationId");
 
                     b.Property<int>("BootcampId")
                         .HasColumnType("int")
@@ -62,7 +59,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ApplicantId");
 
-                    b.HasIndex("ApplicationStateInformationsId");
+                    b.HasIndex("ApplicationStateInformationId");
 
                     b.HasIndex("BootcampId");
 
@@ -968,16 +965,16 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5ece992a-1c2d-4687-8d2d-c4a5deb15189"),
+                            Id = new Guid("b5a09914-32f2-4793-8055-9def2e8148f6"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2024, 4, 4, 22, 42, 35, 908, DateTimeKind.Local).AddTicks(7801),
+                            DateOfBirth = new DateTime(2024, 4, 15, 22, 59, 30, 607, DateTimeKind.Local).AddTicks(6929),
                             Email = "ege@ege.com",
                             FirstName = "Ege umut",
                             LastName = "Tali",
                             NationalIdentity = "TC12312",
-                            PasswordHash = new byte[] { 83, 33, 24, 157, 190, 102, 53, 209, 33, 64, 160, 9, 141, 73, 178, 137, 162, 236, 145, 206, 90, 248, 251, 203, 148, 243, 234, 216, 132, 221, 84, 119, 7, 246, 243, 89, 212, 17, 3, 12, 153, 138, 53, 71, 187, 200, 210, 53, 117, 109, 126, 118, 220, 116, 114, 253, 12, 102, 122, 26, 248, 72, 116, 57 },
-                            PasswordSalt = new byte[] { 92, 211, 48, 224, 153, 142, 250, 222, 208, 70, 235, 179, 236, 82, 54, 242, 31, 185, 45, 106, 249, 59, 207, 175, 7, 153, 152, 155, 232, 221, 120, 91, 176, 37, 199, 82, 249, 161, 77, 155, 198, 149, 194, 35, 165, 179, 85, 253, 53, 46, 143, 123, 164, 144, 73, 109, 251, 72, 153, 189, 42, 139, 155, 108, 200, 255, 90, 214, 204, 237, 112, 179, 248, 102, 161, 16, 41, 240, 19, 64, 143, 0, 128, 160, 230, 140, 178, 162, 101, 196, 135, 57, 142, 190, 9, 244, 175, 34, 20, 1, 21, 96, 130, 89, 231, 7, 151, 109, 216, 13, 6, 120, 244, 78, 149, 129, 220, 186, 171, 74, 66, 194, 51, 128, 127, 133, 106, 11 },
+                            PasswordHash = new byte[] { 20, 222, 46, 114, 51, 243, 106, 206, 228, 116, 20, 81, 50, 152, 250, 51, 191, 143, 245, 3, 59, 241, 35, 122, 24, 62, 218, 49, 77, 124, 161, 140, 98, 31, 99, 230, 195, 198, 216, 37, 37, 143, 225, 181, 94, 87, 229, 231, 167, 175, 25, 61, 145, 171, 76, 225, 25, 188, 177, 44, 251, 11, 71, 38 },
+                            PasswordSalt = new byte[] { 54, 31, 169, 42, 114, 140, 147, 241, 154, 117, 76, 10, 134, 86, 130, 110, 23, 141, 229, 138, 198, 42, 98, 153, 203, 246, 172, 207, 220, 43, 39, 201, 245, 132, 207, 203, 225, 28, 29, 175, 167, 26, 205, 248, 221, 33, 132, 221, 53, 234, 25, 45, 83, 180, 102, 237, 130, 188, 65, 246, 49, 148, 1, 41, 250, 7, 39, 155, 141, 22, 105, 141, 113, 205, 155, 12, 207, 64, 235, 56, 14, 119, 137, 204, 66, 215, 104, 194, 160, 45, 39, 199, 57, 106, 118, 145, 98, 104, 151, 73, 131, 189, 245, 82, 117, 23, 164, 187, 107, 130, 98, 157, 164, 37, 88, 151, 103, 153, 9, 98, 220, 20, 99, 123, 207, 213, 176, 10 },
                             UserName = "EgeUmut"
                         });
                 });
@@ -1020,10 +1017,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9db942ef-bf60-4bf3-b762-4b10db236787"),
+                            Id = new Guid("0eb95f45-3a07-4614-8fa6-3aee3c348d3e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("5ece992a-1c2d-4687-8d2d-c4a5deb15189")
+                            UserId = new Guid("b5a09914-32f2-4793-8055-9def2e8148f6")
                         });
                 });
 
@@ -1071,10 +1068,11 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.ApplicationStateInformation", "ApplicationStateInformations")
+                    b.HasOne("Domain.Entities.ApplicationStateInformation", "ApplicationStateInformation")
                         .WithMany()
-                        .HasForeignKey("ApplicationStateInformationsId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ApplicationStateInformationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.Bootcamp", "Bootcamp")
                         .WithMany("ApplicationInformations")
@@ -1084,7 +1082,7 @@ namespace Persistence.Migrations
 
                     b.Navigation("Applicant");
 
-                    b.Navigation("ApplicationStateInformations");
+                    b.Navigation("ApplicationStateInformation");
 
                     b.Navigation("Bootcamp");
                 });

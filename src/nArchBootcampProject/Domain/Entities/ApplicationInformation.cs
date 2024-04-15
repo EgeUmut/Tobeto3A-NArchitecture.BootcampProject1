@@ -8,6 +8,6 @@ public class ApplicationInformation : Entity<int>
     public virtual Applicant? Applicant { get; set; }
     public int BootcampId { get; set; }
     public virtual Bootcamp? Bootcamp { get; set; }
-    public short ApplicationStateId { get; set; }
-    public virtual ApplicationStateInformation? ApplicationStateInformations { get; set; }
+    public short ApplicationStateInformationId { get; set; }
+    public virtual ApplicationStateInformation? ApplicationStateInformation { get; set; }
 }

@@ -12,9 +12,8 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Commands.Create;
 
-public class CreateBootcampCommand : IRequest<CreatedBootcampResponse> //,
+public class CreateBootcampCommand : IRequest<CreatedBootcampResponse> , ICacheRemoverRequest //,
 //    ISecuredRequest,
-//    ICacheRemoverRequest,
 //    ILoggableRequest,
 //    ITransactionalRequest
 {

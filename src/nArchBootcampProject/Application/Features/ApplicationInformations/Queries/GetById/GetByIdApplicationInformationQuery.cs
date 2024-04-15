@@ -4,6 +4,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using static Application.Features.ApplicationInformations.Constants.ApplicationInformationsOperationClaims;
 
@@ -40,7 +41,8 @@ public class GetByIdApplicationInformationQuery : IRequest<GetByIdApplicationInf
         {
             ApplicationInformation? applicationInformation = await _applicationInformationRepository.GetAsync(
                 predicate: ai => ai.Id == request.Id,
-                cancellationToken: cancellationToken
+                cancellationToken: cancellationToken,
+                include:p=>p.Include(x=>x.ApplicationStateInformation)
             );
             await _applicationInformationBusinessRules.ApplicationInformationShouldExistWhenSelected(applicationInformation);
 

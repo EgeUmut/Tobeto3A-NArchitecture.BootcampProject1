@@ -3,6 +3,7 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
@@ -10,7 +11,7 @@ using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Queries.GetList;
 
-public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetListBootcampListItemDto>> //, ISecuredRequest, ICachableRequest
+public class GetListBootcampByInstructorIdQuery : IRequest<GetListResponse<GetListBootcampListItemDto>> , ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
     public Guid InstructorId { get; set; }
