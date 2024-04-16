@@ -13,4 +13,5 @@ public class GetListBootcampListItemDto : IDto
     public DateTime EndDate { get; set; }
     public short BootcampStateId { get; set; }
     public string BootcampStateName { get; set; }
+    public string BootcampImageImagePath { get; set; }
 }

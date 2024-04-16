@@ -13,5 +13,5 @@ public class GetByIdBootcampResponse : IResponse
     public DateTime EndDate { get; set; }
     public short BootcampStateId { get; set; }
     public string BootcampStateName { get; set; }
-    public string BootcampImageImagePath { get; set; }
+    public string ImagePath { get; set; }
 }
