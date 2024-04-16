@@ -76,10 +76,22 @@ public class ApplicantRegisterCommand : IRequest<RegisteredResponse>
             UserOperationClaim userOperationClaim3 = new() { UserId = createdUser.Id, OperationClaimId = 35 };
             UserOperationClaim userOperationClaim4 = new() { UserId = createdUser.Id, OperationClaimId = 49 };
 
+            UserOperationClaim userOperationClaim5 = new() { UserId = createdUser.Id, OperationClaimId = 19 };
+            UserOperationClaim userOperationClaim6 = new() { UserId = createdUser.Id, OperationClaimId = 20 };
+            UserOperationClaim userOperationClaim7 = new() { UserId = createdUser.Id, OperationClaimId = 22 };
+            UserOperationClaim userOperationClaim8 = new() { UserId = createdUser.Id, OperationClaimId = 23 };
+
+            UserOperationClaim userOperationClaim9 = new() { UserId = createdUser.Id, OperationClaimId = 25 };
+
             await _userOperationClaimRepository.AddAsync(userOperationClaim1);
             await _userOperationClaimRepository.AddAsync(userOperationClaim2);
             await _userOperationClaimRepository.AddAsync(userOperationClaim3);
             await _userOperationClaimRepository.AddAsync(userOperationClaim4);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim5);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim6);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim7);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim8);
+            await _userOperationClaimRepository.AddAsync(userOperationClaim9);
 
             AccessToken createdAccessToken = await _authService.CreateAccessToken(createdUser);
 
