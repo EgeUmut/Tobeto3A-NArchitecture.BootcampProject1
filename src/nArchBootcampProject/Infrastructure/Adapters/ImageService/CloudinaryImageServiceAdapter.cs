@@ -12,7 +12,9 @@ public class CloudinaryImageServiceAdapter : ImageServiceBase
 
     public CloudinaryImageServiceAdapter(IConfiguration configuration)
     {
-        //Account? account = configuration.GetSection("CloudinaryAccount").Get<Account>();
+        //Account? account2 = configuration.GetSection("CloudinaryAccount").Get<Account>();
+
+
         Account account = new Account()
         {
             ApiKey = "799172212529766",
