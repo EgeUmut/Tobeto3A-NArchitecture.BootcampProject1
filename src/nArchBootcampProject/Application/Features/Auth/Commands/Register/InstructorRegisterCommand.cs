@@ -54,6 +54,7 @@ public class InstructorRegisterCommand : IRequest<RegisteredResponse>
                 passwordHash: out byte[] passwordHash,
                 passwordSalt: out byte[] passwordSalt
             );
+            //test
             Instructor newUser =
                 new()
                 {
